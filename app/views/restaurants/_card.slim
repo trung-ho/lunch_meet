@@ -1,0 +1,11 @@
+.col-sm-4
+  img.card-img-top alt=("Card image cap") src="#{restaurant.image}"
+  .card-body
+    h5.card-title= restaurant.name
+    p.card-text="Categories: " + restaurant.categories.pluck(:name).join(", ")
+  ul.list-group.list-group-flush
+    li.list-group-item="Address: " + restaurant.display_address.join(", ")
+    li.list-group-item="Phone number: " + restaurant.display_phone
+  .card-body
+    a.card-link href="#{restaurant.url}" View in Yelp
+

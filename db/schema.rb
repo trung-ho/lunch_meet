@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2019_05_06_022448) do
     t.string "zip_code"
     t.string "country"
     t.string "state"
-    t.string "display_address"
+    t.string "display_address", default: [], array: true
     t.string "phone"
     t.string "display_phone"
     t.string "provider"

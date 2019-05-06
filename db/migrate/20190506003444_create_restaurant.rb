@@ -14,7 +14,7 @@ class CreateRestaurant < ActiveRecord::Migration[5.2]
       t.string :zip_code
       t.string :country
       t.string :state
-      t.string :display_address
+      t.string :display_address, array: true, default: []
       t.string :phone
       t.string :display_phone
       t.string :provider

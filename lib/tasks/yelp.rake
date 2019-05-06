@@ -1,10 +1,8 @@
 namespace :yelp do
   desc "Scraping Category"
-  task :scraping_cateogry, [:provider] => :environment do |t, args|
-    if args.provider == 'yelp'
-      url = "https://api.yelp.com/v3/categories"
-      api_key = ENV['YELP_API_KEY']
-    end
+  task :scraping_cateogry => :environment do |t, args|
+    url = "https://api.yelp.com/v3/categories"
+    api_key = ENV['YELP_API_KEY']
 
     response = HTTP.auth("Bearer #{api_key}").get("#{url}")
     result = response.parse
@@ -28,18 +26,18 @@ namespace :yelp do
       restaurant = Restaurant.find_or_create_by(
         alias: r['alias'], 
         name: r['title'],
-        image: r['image'],
+        image: r['image_url'],
         url: r['url'],
         rating: r['rating'],
         price: r['price'],
-        address1: r['address1'],
-        address2: r['address2'],
-        address3: r['address3'],
-        city: r['city'],
-        zip_code: r['zip_code'],
-        country: r['country'],
-        state: r['state'],
-        display_address: r['display_address'],
+        address1: r['location']['address1'],
+        address2: r['location']['address2'],
+        address3: r['location']['address3'],
+        city: r['location']['city'],
+        zip_code: r['location']['zip_code'],
+        country: r['location']['country'],
+        state: r['location']['state'],
+        display_address: r['location']['display_address'],
         phone: r['phone'],
         display_phone: r['display_phone'],
         provider: r['provider'],
