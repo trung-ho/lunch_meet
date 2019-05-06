@@ -1,5 +1,6 @@
 class RestaurantsController < ApplicationController
   def index
-    @restaurants = Restaurant.all.includes(:categories)
+    @q = Restaurant.includes(:categories).ransack(params[:q])
+    @restaurants = @q.result(distinct: true)
   end
 end

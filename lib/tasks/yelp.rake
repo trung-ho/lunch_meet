@@ -25,7 +25,7 @@ namespace :yelp do
     result['businesses'].each do |r|
       restaurant = Restaurant.find_or_create_by(
         alias: r['alias'], 
-        name: r['title'],
+        name: r['name'],
         image: r['image_url'],
         url: r['url'],
         rating: r['rating'],

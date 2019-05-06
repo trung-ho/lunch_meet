@@ -1,3 +1,10 @@
 .container
+  .row.mb-3
+    .col-sm-12
+      = search_form_for @q do |f|
+        .form-group
+          = f.label :email
+          = f.search_field :email_cont, class: 'form-control'
+        = f.submit "Search", class: 'btn btn-primary'
   .row
     = render partial: "card", collection: @users, as: :user
