@@ -9,7 +9,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
       li.nav-item
         a.nav-link href="#{users_path}" Users
     - if user_signed_in?
-      a.sign-in-btn.nav-link.text-secondary.px-4 href="#{destroy_user_session_path}"  Log out
+      =link_to 'Sign out', '/users/sign_out', method: :delete
     - else
       a.sign-in-btn.nav-link.text-secondary.px-4 href="#{new_user_registration_path}" Sign Up
       a.sign-in-btn.nav-link.text-secondary.px-4 href="#{new_user_session_path}" Sign In
