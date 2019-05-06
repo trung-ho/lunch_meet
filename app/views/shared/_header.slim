@@ -1,14 +1,15 @@
 nav.navbar.navbar-expand-lg.navbar-light.bg-light
-  a.navbar-brand href="#" Lunch Meet
+  a.navbar-brand href="#{root_path}" Lunch Meet
   button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button" 
     span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
     ul.navbar-nav.mr-auto
-      li.nav-item.active
-        a.nav-link href="#{root_path}" 
-          | Home
-          span.sr-only (current)
       li.nav-item
-        a.nav-link href="#" Restaurants
+        a.nav-link href="#{restaurants_path}" Restaurants
       li.nav-item
-        a.nav-link href="#" Users
+        a.nav-link href="#{users_path}" Users
+    - if user_signed_in?
+      a.sign-in-btn.nav-link.text-secondary.px-4 href="#{destroy_user_session_path}"  Log out
+    - else
+      a.sign-in-btn.nav-link.text-secondary.px-4 href="#{new_user_registration_path}" Sign Up
+      a.sign-in-btn.nav-link.text-secondary.px-4 href="#{new_user_session_path}" Sign In
