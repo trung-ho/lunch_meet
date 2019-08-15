@@ -7,6 +7,7 @@ namespace :yelp do
     response = HTTP.auth("Bearer #{api_key}").get("#{url}")
     result = response.parse
     result['categories'].each do |category|
+      next if category['parent_aliases'] && !(category['parent_aliases'].include? 'restaurants')
       Category.find_or_create_by(alias: category['alias'], name: category['title'])
     end
   end
