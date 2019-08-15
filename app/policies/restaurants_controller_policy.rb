@@ -7,7 +7,6 @@ class RestaurantsControllerPolicy
   end
 
   def edit?
-    byebug
     true
   end
 end

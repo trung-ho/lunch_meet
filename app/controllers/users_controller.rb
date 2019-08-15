@@ -5,5 +5,6 @@ class UsersController < ApplicationController
   end
 
   def show
+  	abc
   end
 end
