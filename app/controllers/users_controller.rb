@@ -5,6 +5,12 @@ class UsersController < ApplicationController
   end
 
   def show
-  	abc
+    @user = User.find user_id
+  end
+
+  private
+
+  def user_id
+    params['id']
   end
 end
