@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_13_033143) do
+ActiveRecord::Schema.define(version: 2019_08_18_053143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,10 @@ ActiveRecord::Schema.define(version: 2019_08_13_033143) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cover_file_name"
+    t.string "cover_content_type"
+    t.integer "cover_file_size"
+    t.datetime "cover_updated_at"
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
@@ -57,9 +61,11 @@ ActiveRecord::Schema.define(version: 2019_08_13_033143) do
     t.string "phone"
     t.string "display_phone"
     t.string "provider"
-    t.string "resource_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.string "provider_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,6 +81,10 @@ ActiveRecord::Schema.define(version: 2019_08_13_033143) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
