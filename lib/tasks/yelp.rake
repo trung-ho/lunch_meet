@@ -41,7 +41,7 @@ namespace :yelp do
         display_address: r['location']['display_address'],
         phone: r['phone'],
         display_phone: r['display_phone'],
-        provider: r['provider'],
+        provider: 'yelp',
         resource_id: r['id']
       )
       categories = r['categories']
