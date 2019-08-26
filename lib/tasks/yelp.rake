@@ -8,6 +8,8 @@ namespace :yelp do
     result = response.parse
     result['categories'].each do |category|
       next if category['parent_aliases'] && !(category['parent_aliases'].include? 'restaurants')
+      next if (category['country_blacklist'] && category['country_blacklist'].any?) || 
+              (category['country_whitelist'] && category['country_whitelist'].any?)
       Category.find_or_create_by(alias: category['alias'], name: category['title'])
     end
   end

@@ -1,7 +1,21 @@
 #home-page.container-fluid
   .row
     .container
-      h2.logo-text-style
+      h1.mt-5.pt-5.text-center.logo-text-style
         span.first-letter Lunch
         span.second-letter Meet
-
+      #home-carousel.carousel.slide.mx-auto.mb-3 data-ride="carousel" 
+        .carousel-inner
+          .carousel-item.active
+            img.d-block.w-100 alt="..." src="/assets/shared/carousel-1.png"
+          .carousel-item
+            img.d-block.w-100 alt="..." src="/assets/shared/carousel-2.png"
+          .carousel-item
+            img.d-block.w-100 alt="..." src="/assets/shared/carousel-3.png"
+      .row.sign-in-groups-btn
+        .col-sm-6.mb-3
+          .sign-up-btn.btn.w-100
+            a.nav-link.px-4.text-center href="#{new_user_registration_path}" Sign Up
+        .col-sm-6.mb-3
+          .sign-in-btn.btn.w-100
+            a.nav-link.text-center.text-white.px-4 href="#{new_user_session_path}" Sign In
