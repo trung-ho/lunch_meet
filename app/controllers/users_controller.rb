@@ -8,6 +8,9 @@ class UsersController < ApplicationController
     @user = User.find user_id
   end
 
+  def dashboard
+  end
+
   private
 
   def user_id

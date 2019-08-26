@@ -3,7 +3,15 @@ class ApplicationController < ActionController::Base
 
   include Pundit
   protect_from_forgery
+
   def home
+    if user_signed_in?
+      redirect_to dashboard_users_path
+    end
+  end
+
+  def after_sign_in_path_for(resource)
+    stored_location_for(resource) || dashboard_users_path
   end
 
   protected
