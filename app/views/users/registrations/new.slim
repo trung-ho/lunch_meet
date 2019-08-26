@@ -1,22 +1,26 @@
-.container
-  h2 Sign up
-  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    = devise_error_messages!
-    .field
-      = f.label :email
-      br/
-      = f.email_field :email, autofocus: true, autocomplete: "email"
-    .field
-      = f.label :password
-      - if @minimum_password_length
-        em
-          | (#{@minimum_password_length} characters minimum)
-      br/
-      = f.password_field :password, autocomplete: "new-password"
-    .field
-      = f.label :password_confirmation
-      br/
-      = f.password_field :password_confirmation, autocomplete: "new-password"
-    .actions
-      = f.submit "Sign up"
-  = render "users/shared/links"
+#sign-in-page.container-fluid
+  .row
+    .container
+      h1.mt-5.pt-5.text-center
+        a.no-underline href="#{root_path}"
+          = app_logo
+      .row
+        .col-12.sign-in-form.mt-3.px-4.py-5.rounded
+          h2 Registration
+          = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+            = devise_error_messages!
+            .form-group
+              = f.label :email
+              = f.email_field :email, class: 'form-control', autofocus: true, autocomplete: "email"
+            .form-row
+              .form-group.col-md-6
+                = f.label :password
+                = f.password_field :password, class: 'form-control', autocomplete: "new-password"
+              .form-group.col-md-6
+                = f.label :password_confirmation
+                = f.password_field :password_confirmation, class: 'form-control', autocomplete: "new-password"
+            .actions.mt-2
+              = f.submit "Create a new account", class: 'sign-in-btn btn w-100 p-2 mb-2'
+              .sign-up-btn.btn.w-100.p-0
+                a.nav-link.text-center.p-2 href="#{new_user_session_path}" Already have account
+

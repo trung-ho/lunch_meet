@@ -1,6 +1,7 @@
 @import "bootstrap";
 @import "home";
 @import "header";
+@import "users/sign_up";
 
 
 @import "responsive";
@@ -15,21 +16,25 @@ body {
   letter-spacing: 0.5px;
 }
 
-.logo-text-style {
-  .first-letter {
-    color: var(--main-text-color);
-    font-weight: 300;
-  }
 
-  .second-letter {
-    color: var(--main-bg-color);
-    font-family: 'Pacifico', cursive;
-    font-weight: 600;
-    font-style: italic;
-  }
+.logo-text.first-letter {
+  color: var(--main-text-color);
+  font-weight: 300;
 }
+
+.logo-text.second-letter {
+  color: var(--main-bg-color);
+  font-family: 'Pacifico', cursive;
+  font-weight: 600;
+  font-style: italic;
+}
+
 .navbar-brand.logo {
   img {
     width: 65px;
   }
+}
+
+a.no-underline {
+  text-decoration: none !important;
 }

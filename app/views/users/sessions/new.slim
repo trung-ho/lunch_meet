@@ -1,18 +1,25 @@
-.container
-  h2 Log in
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    .field
-      = f.label :email
-      br/
-      = f.email_field :email, autofocus: true, autocomplete: "email"
-    .field
-      = f.label :password
-      br/
-      = f.password_field :password, autocomplete: "current-password"
-    - if devise_mapping.rememberable?
-      .field
-        = f.check_box :remember_me
-        = f.label :remember_me
-    .actions
-      = f.submit "Log in"
-  = render "users/shared/links"
+#sign-in-page.container-fluid
+  .row
+    .container
+      h1.mt-5.pt-5.text-center
+        a.no-underline href="#{root_path}"
+          = app_logo
+      .row
+        .col-12.sign-in-form.mt-3.px-4.py-5.rounded
+          h2 Sign in
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .form-group
+              = f.label :email
+              = f.email_field :email, class: 'form-control', autofocus: true, autocomplete: "email"
+            .form-group
+              = f.label :password
+              = f.password_field :password, class: 'form-control', autocomplete: "new-password"
+            - if devise_mapping.rememberable?
+              .field
+                = f.check_box :remember_me
+                = f.label :remember_me, class: 'ml-2'
+            .actions
+              = f.submit "Sign in", class: 'sign-in-btn btn w-100 p-2 mb-2'
+              .sign-up-btn.btn.w-100.p-0
+                a.nav-link.text-center.p-2 href="#{new_user_registration_path}" Join Us
+              = render "users/shared/links"
