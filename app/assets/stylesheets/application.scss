@@ -3,7 +3,8 @@
 @import "header";
 
 :root {
-  --main-bg-color: #14b5a4; 
+  --main-bg-color: #14b5a4;
+  --main-text-color: #19d8c4;
 }
 
 body {
@@ -11,6 +12,19 @@ body {
   letter-spacing: 0.5px;
 }
 
+.logo-text-style {
+  .first-letter {
+    color: var(--main-text-color);
+    font-weight: 300;
+  }
+
+  .second-letter {
+    color: var(--main-bg-color);
+    font-family: 'Pacifico', cursive;
+    font-weight: 600;
+    font-style: italic;
+  }
+}
 .navbar-brand.logo {
   img {
     width: 65px;
