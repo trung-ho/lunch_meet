@@ -17,10 +17,12 @@
                 a.nav-link.text-white href="#{groups_path}" My Groups
               li.nav-item
                 .dropdown
-                  a#right-menu-links.btn.dropdown-toggle.text-white aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" 
-                    | Dropdown link
+                  a#right-menu-links.btn.dropdown-toggle.text-white aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+                    = image_tag current_user.avatar.url(:thumb), class: 'user-avatar rounded-circle mr-1'
+                    = current_user.full_name
                   .dropdown-menu aria-labelledby="right-menu-links" 
                     a.dropdown-item href="#{user_path current_user}" My Profile
+                    a.dropdown-item href="#{user_path current_user}" Change my password
                     =link_to 'Sign out', '/users/sign_out', method: :delete, class: 'dropdown-item'
           - else
             a.sign-in-btn.nav-link.text-white.px-4 href="#{new_user_registration_path}" Sign Up

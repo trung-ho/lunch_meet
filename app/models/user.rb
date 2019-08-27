@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   DEFAULT_URL = "#{Rails.env}/:class/:attachment/:id/:style_:basename.:extension"
-  has_attached_file :avatar,  styles: { medium: "300x300>", thumb: "100x100>" },
+  has_attached_file :avatar,  styles: { medium: "300x300#", thumb: "100x100#" },
                               path: DEFAULT_URL,
                               s3_protocol: :https,
                               default_url: "users/missing.png"
@@ -13,4 +13,8 @@ class User < ApplicationRecord
   has_many :groups
   has_many :joined_in_groups, foreign_key: "user_id", class_name: "GroupMember"
   has_many :member_of_groups, through: :joined_in_groups, class_name: 'Group', source: :group
+
+  def full_name
+    first_name + ' ' + last_name
+  end
 end
