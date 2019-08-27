@@ -1,5 +1,11 @@
-h3= @user.email
-p=@user.first_name
-p=@user.last_name
-p= image_tag @user.avatar.url(:medium)
-p=link_to "Edit Profile", edit_user_registration_path
+#user-profile-page
+  .container
+    .row
+      .col-3
+        p= image_tag @user.avatar.url(:medium), class: 'w-100 rounded-circle'
+      .col-9
+        h3=@user.full_name
+        dl.row
+          dt.col-sm-3 Email address
+          dd.col-sm-9= @user.email
+        p=link_to "Edit Profile", edit_user_registration_path, class: 'btn btn-success'
