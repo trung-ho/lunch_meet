@@ -1,4 +1,18 @@
 .container
   .row
     .col-12
-      h1 hello world
+      = search_form_for @q do |f|
+        .form-group.row
+          .col-10
+            = f.search_field :name_cont, class: 'form-control', placeholder: 'Find your group by name'
+          .col-2
+            = f.submit "Search", class: 'btn btn-page-primary w-100'
+  .row
+    -if @groups.any?
+      = render partial: "card", collection: @groups, as: :group
+    -else
+      .alert.alert-success role="alert" 
+        h4.alert-heading Well done!
+        p Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.
+        hr/
+        p.mb-0 Whenever you need to, be sure to use margin utilities to keep things nice and tidy.

@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   def index
-  	@groups = current_user.groups
+    @q = current_user.groups.ransack(params[:q])
+    @groups = @q.result(distinct: true).order(created_at: :desc)
   end
 end
