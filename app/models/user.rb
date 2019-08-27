@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :member_of_groups, through: :joined_in_groups, class_name: 'Group', source: :group
 
   def full_name
+    return '' if first_name.nil? && last_name.nil?
     first_name + ' ' + last_name
   end
 end
