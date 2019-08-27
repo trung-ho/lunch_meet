@@ -18,4 +18,12 @@ class User < ApplicationRecord
     return '' if first_name.nil? && last_name.nil?
     first_name + ' ' + last_name
   end
+
+  def is_admin_of group
+    self.id = group.id
+  end
+
+  def is_member_of group
+    group.members.pluck(:id).include? self.id
+  end
 end

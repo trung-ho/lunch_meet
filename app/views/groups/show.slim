@@ -1,0 +1,17 @@
+.container#group-show
+  .row.groups-btn-actions
+    .col-md-7.mb-3
+      .group-name-and-logo.mr-auto
+        =image_tag @group.cover.url(:thumb), class: 'mr-3 rounded'
+        span.group-name= @group.name
+    .col-md-5.d-flex.align-items-center.justify-content-between.groups-actions.mb-3
+      -if current_user.is_admin_of @group
+        a.no-underline.text-page-primary href="#{edit_group_path @group}"
+          i.far.fa-calendar-plus.mr-2
+          span Add Event
+        a.no-underline.text-page-primary href="#{edit_group_path @group}"
+          i.fas.fa-user-plus.mr-2
+          span Add Members
+        a.no-underline.text-page-primary href="#{edit_group_path @group}"
+          i.far.fa-edit.mr-2
+          span Edit group

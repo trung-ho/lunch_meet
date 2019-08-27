@@ -3,6 +3,7 @@
 @import "header";
 @import "users/sign_up";
 @import "groups/_card";
+@import "groups/show";
 
 @import "responsive";
 
@@ -37,6 +38,14 @@ body {
 
 a.no-underline {
   text-decoration: none !important;
+}
+
+.text-page-primary {
+  color: var(--main-bg-color);
+}
+
+.text-page-primary:hover {
+  color: var(--main-text-color);
 }
 
 .btn-page-primary {
