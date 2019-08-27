@@ -4,9 +4,11 @@ class Group < ActiveRecord::Base
   has_many :members, through: :group_members, source: :member
 
   DEFAULT_URL = "#{Rails.env}/:class/:attachment/:id/:style_:basename.:extension"
+  COVER_TYPE = /\Aimage\/.*\z/
   has_attached_file :cover,  styles: { medium: "300x300#", thumb: "100x100#" },
                               path: DEFAULT_URL,
                               s3_protocol: :https,
                               default_url: "groups/missing.svg"
   validates_attachment_content_type :cover, content_type: /\Aimage\/.*\z/
+  validates_presence_of :name
 end

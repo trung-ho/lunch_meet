@@ -13,6 +13,13 @@ class GroupsController < ApplicationController
   end
 
   def update
+    @group = find_group
+
+    if @group.update_attributes group_params
+      redirect_to(@group, notice: 'Group was successfully updated')
+    else
+      render :edit
+    end
   end
 
   def create
@@ -31,7 +38,7 @@ class GroupsController < ApplicationController
     Group.find group_id
   end
 
-  # def params
-  #   params.permit(:name, :description, :cover)
-  # end
+  def group_params
+    params.require(:group).permit(:name, :description, :cover)
+  end
 end

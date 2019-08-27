@@ -1,2 +1,10 @@
 #group-edit-page
   .container
+    = simple_form_for @group, wrapper: :horizontal_form, wrapper_mappings: { file: :horizontal_file } do |f|
+      = f.error_notification
+      = f.input :name
+      = f.input :description
+      = f.input :cover, as: :file, input_html: { accept: Group::COVER_TYPE }
+      .form-group.row
+        .col-sm-9.offset-sm-3
+          = f.button :submit, class: "btn-primary"
