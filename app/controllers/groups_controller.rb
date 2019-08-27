@@ -9,10 +9,10 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    @group = find_group
   end
 
   def update
-
   end
 
   def create
