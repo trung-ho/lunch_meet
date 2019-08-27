@@ -1,17 +1,27 @@
-#main-header-navbar.row
-  .col
-    nav.navbar.navbar-expand-lg.navbar-light
-      a.navbar-brand.logo href="#{root_path}"= image_tag("/assets/shared/logo.png")
-      button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button" 
-        span.navbar-toggler-icon
-      #navbarSupportedContent.collapse.navbar-collapse
-        ul.navbar-nav.mr-auto
-          li.nav-item
-            a.nav-link.text-white href="#{restaurants_path}" Restaurants
-          li.nav-item
-            a.nav-link.text-white href="#{users_path}" Users
-        - if user_signed_in?
-          =link_to 'Sign out', '/users/sign_out', method: :delete
-        - else
-          a.sign-in-btn.nav-link.text-white.px-4 href="#{new_user_registration_path}" Sign Up
-          a.sign-in-btn.nav-link.text-white.px-4 href="#{new_user_session_path}" Sign In
+.row
+  #main-header-navbar.col
+    .container
+      nav.navbar.navbar-expand-lg.navbar-light
+        a.navbar-brand.logo href="#{root_path}"= app_logo_in_white
+        button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button" 
+          span.navbar-toggler-icon
+        #navbarSupportedContent.collapse.navbar-collapse
+          ul.navbar-nav.mr-auto
+            / li.nav-item
+            /   a.nav-link.text-white href="#{restaurants_path}" My Groups
+          /   li.nav-item
+          /     a.nav-link.text-white href="#{users_path}" Users
+          - if user_signed_in?
+            ul.navbar-nav
+              li.nav-item
+                a.nav-link.text-white href="#{groups_path}" My Groups
+              li.nav-item
+                .dropdown
+                  a#right-menu-links.btn.dropdown-toggle.text-white aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" 
+                    | Dropdown link
+                  .dropdown-menu aria-labelledby="right-menu-links" 
+                    a.dropdown-item href="#{user_path current_user}" My Profile
+                    =link_to 'Sign out', '/users/sign_out', method: :delete, class: 'dropdown-item'
+          - else
+            a.sign-in-btn.nav-link.text-white.px-4 href="#{new_user_registration_path}" Sign Up
+            a.sign-in-btn.nav-link.text-white.px-4 href="#{new_user_session_path}" Sign In

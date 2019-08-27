@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   def home
     if user_signed_in?
-      redirect_to dashboard_users_path
+      redirect_to groups_path
     end
   end
 
