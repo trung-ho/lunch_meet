@@ -1,50 +1,36 @@
 #user-profile-page
   .container
-    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-      .row
-        .col-12
-          h2
-            | Edit your profile
-        .col-12.error-message
-          = devise_error_messages!
-      .row
-        .col-sm-3
-          p= image_tag @user.avatar.url(:medium), class: 'w-100 rounded-circle'
-          .form-group
-            = f.file_field :avatar, class: 'form-control-file'
-        .col-sm-9
-          .form-group.row
-            = f.label :email, class: 'col-sm-2 col-form-label'
-            .col-sm-10
-              = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
-          .form-group.row
-            = f.label :first_name, class: 'col-sm-2 col-form-label'
-            .col-sm-10
-              = f.text_field :first_name, class: 'form-control'
-          .form-group.row
-            = f.label :last_name, class: 'col-sm-2 col-form-label'
-            .col-sm-10
-              = f.text_field :last_name, class: 'form-control'
-          .form-group.row
-            = f.label :password, class: 'col-sm-2 col-form-label'
-            .col-sm-10
-              = f.password_field :password, class: 'form-control'
-              small.form-text.text-muted leave blank if you don't want to change password
-          .form-group.row
-            = f.label :password_confirmation, class: 'col-sm-2 col-form-label'
-            .col-sm-10
-              = f.password_field :password_confirmation, class: 'form-control'
-              small.form-text.text-muted leave blank if you don't want to change password
-          br
-          .dropdown-divider
-          br
-          .form-group.row
-            = f.label :current_password, class: 'col-sm-2 col-form-label'
-            .col-sm-10
-              = f.password_field :current_password, autocomplete: "current-password", class: 'form-control'
-              small.form-text.text-muted we need your current password to confirm your changes
-          .form-group.row
-            .col-sm-8
-            .col-sm-4
-              .actions
-                = f.submit "Update", class: 'form-control btn-page-primary'
+      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), wrapper: :horizontal_form,
+                                  wrapper_mappings: { boolean: :horizontal_boolean,
+                                    check_boxes:   :horizontal_collection,
+                                    date:          :horizontal_multi_select,
+                                    datetime:      :horizontal_multi_select,
+                                    file:          :horizontal_file,
+                                    radio_buttons: :horizontal_collection,
+                                    range:         :horizontal_range,
+                                    time:          :horizontal_multi_select },
+                                  html: { method: :put }) do |f|
+        = f.error_notification
+        = f.input :email, input_html: { autocomplete: 'email' }
+        = f.input :first_name
+        = f.input :last_name
+        = f.input :avatar, as: :file
+        = f.input :password, input_html: { autocomplete: 'current-password' }
+        .form-group.row
+          .col-sm-9.offset-sm-3
+            small.form-text.text-muted leave blank if you don't want to change password
+        = f.input :password_confirmation
+        .form-group.row
+          .col-sm-9.offset-sm-3
+            small.form-text.text-muted leave blank if you don't want to change password
+        .dropdown-divider.py-4
+        = f.input :current_password
+        .form-group.row
+          .col-sm-9.offset-sm-3
+            small.form-text.text-muted we need your current password to confirm your changes
+        .form-group.row
+          .col-sm-9.offset-sm-3
+            = f.button :submit, "Update my information", class: "btn-page-primary"
+          
+
+   
