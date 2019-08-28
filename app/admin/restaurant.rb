@@ -10,8 +10,13 @@ ActiveAdmin.register Restaurant do
     end
 
     column :original_website do |resturant|
-      image_tag(resturant.image)
+      if resturant.url.present?
+        link_to "View resturant in Yelp", resturant.url
+      else
+        'Cannot find provider'
+      end
     end
+
     actions
   end
 end
