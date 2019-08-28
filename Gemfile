@@ -48,6 +48,7 @@ gem "paperclip", "~> 6.0.0"
 gem 'aws-sdk-s3'
 gem 'simple_form'
 gem 'bootstrap4-datetime-picker-rails'
+gem 'activeadmin'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
