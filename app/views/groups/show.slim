@@ -6,7 +6,7 @@
         span.group-name= @group.name
     .col-md-5.d-flex.align-items-center.justify-content-between.groups-actions.mb-3
       -if current_user.is_admin_of @group
-        a.no-underline.text-page-primary href="#{edit_group_path @group}"
+        a.no-underline.text-page-primary href="#{new_group_event_path @group}"
           i.far.fa-calendar-plus.mr-2
           span Add Event
         a.no-underline.text-page-primary href="#{edit_group_path @group}"

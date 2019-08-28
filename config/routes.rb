@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     end
   end
   resources :restaurants
-  resources :groups
-  resources :events
+  resources :groups do
+    resources :events
+  end
+
 end

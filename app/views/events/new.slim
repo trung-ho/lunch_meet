@@ -1,6 +1,7 @@
-#group-edit-page
+#event-new-page
   .container
-    = simple_form_for @group, wrapper: :horizontal_form, wrapper_mappings: { file: :horizontal_file },
+    h2 Create New Event
+    = simple_form_for @event, wrapper: :horizontal_form, wrapper_mappings: { file: :horizontal_file },
                               wrapper_mappings: { boolean: :horizontal_boolean,
                                 check_boxes:   :horizontal_collection,
                                 date:          :horizontal_multi_select,
@@ -8,11 +9,17 @@
                                 file:          :horizontal_file,
                                 radio_buttons: :horizontal_collection,
                                 range:         :horizontal_range,
-                                time:          :horizontal_multi_select } do |f|
+                                time:          :horizontal_multi_select }, url: new_group_event_path do |f|
       = f.error_notification
-      = f.input :name
+      = f.input :title
       = f.input :description
-      = f.input :cover, as: :file, input_html: { accept: Group::COVER_TYPE }
+      = f.input :start_at
+      = f.input :vote_end_at
+      = f.input :vote_duration
+      = f.input :address
+      = f.input :latitude
+      = f.input :longitude
+      = f.input :group_id
       .form-group.row
         .col-sm-9.offset-sm-3
           = f.button :submit, class: "btn-page-primary"
