@@ -1,10 +1,13 @@
 ActiveAdmin.register Restaurant do
   actions :all, except: [:destroy]
+  filter :name_cont, as: :string, label: "Name"
+  filter :rating
+  filter :categories
 
   index do
     column :id
     column :name
-    column :address1
+    column :display_address
     column :image do |resturant|
       image_tag(resturant.image)
     end
