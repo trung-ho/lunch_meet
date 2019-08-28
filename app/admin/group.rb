@@ -1,5 +1,6 @@
 ActiveAdmin.register Group do
   actions :all, except: [:destroy]
+  filter :name_cont, as: :string, label: "Name"
 
   index do
     column :id
