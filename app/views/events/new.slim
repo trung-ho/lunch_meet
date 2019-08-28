@@ -9,12 +9,18 @@
                                 file:          :horizontal_file,
                                 radio_buttons: :horizontal_collection,
                                 range:         :horizontal_range,
-                                time:          :horizontal_multi_select }, url: new_group_event_path do |f|
+                                time:          :horizontal_multi_select }, url: group_events_path do |f|
       = f.error_notification
-      = f.input :title
-      = f.input :description
-      = f.input :start_at
-      = f.input :vote_end_at
+      = f.input :title, placeholder: 'Event Title'
+      = f.input :description, placeholder: 'Briefly description of event'
+      .form-group.row.string.optional.event_start_at
+        label.col-sm-3.col-form-label.string.optional for="event_start_at" Start At
+        .col-sm-9#start_at_datetime_picker.input-group.date data-target-input="nearest" 
+          input#event_start_at.form-control.string.optional.datetimepicker-input name="event[start_at]" type="text" data-target="#start_at_datetime_picker"
+          .input-group-append data-target="#start_at_datetime_picker" data-toggle="datetimepicker" 
+            .input-group-text
+              i.fa.fa-calendar
+
       = f.input :vote_duration
       = f.input :address
       = f.input :latitude

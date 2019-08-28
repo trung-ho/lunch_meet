@@ -5,7 +5,17 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = get_event
+    @group = current_user.groups.where(id: group_id).last
+    if @group.present?
+      @event = @group.events.new event_params
+      if @event.save
+        redirect_to(@group, error: 'Event is created successful.')
+      else
+        render :new
+      end
+    else
+      redirect_to(groups_path, error: 'Invalid Group')
+    end
   end
 
   def show
