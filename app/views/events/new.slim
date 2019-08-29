@@ -1,4 +1,29 @@
 #event-new-page
+  #pac-card.pac-card
+    div
+      #title
+        | Autocomplete search
+      #type-selector.pac-controls
+        input#changetype-all checked="checked" name="type" type="radio" /
+        label for="changetype-all"  All
+        input#changetype-establishment name="type" type="radio" /
+        label for="changetype-establishment"  Establishments
+        input#changetype-address name="type" type="radio" /
+        label for="changetype-address"  Addresses
+        input#changetype-geocode name="type" type="radio" /
+        label for="changetype-geocode"  Geocodes
+      #strict-bounds-selector.pac-controls
+        input#use-strict-bounds type="checkbox" value="" /
+        label for="use-strict-bounds"  Strict Bounds
+    #pac-container
+      input#pac-input placeholder=("Enter a location") type="text" /
+  #map
+  #infowindow-content
+    img#place-icon height="16" src="" width="16" /
+    span#place-name.title
+    br/
+    span#place-address
+  
   .container
     h2 Create New Event
     = simple_form_for @event, wrapper: :horizontal_form, wrapper_mappings: { file: :horizontal_file },
