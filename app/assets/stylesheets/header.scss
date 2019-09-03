@@ -4,4 +4,20 @@
   .user-avatar {
     width: 25px;
   }
+
+  .header-wrap {
+    position: relative;
+  }
+
+  #toasts-messages {
+    position: relative;
+
+    .toast-item {
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 999;
+      width: 30vw;
+    }
+  }
 }

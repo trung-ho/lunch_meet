@@ -22,5 +22,6 @@
 
 //= require datetime_picker
 //= require google_map_init
+//= require notification
 
 

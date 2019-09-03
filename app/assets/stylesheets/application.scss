@@ -56,6 +56,10 @@ a.no-underline {
   border-color: var(--main-text-color);
 }
 
+.bg-page-primary {
+  background-color: var(--main-bg-color);
+}
+
 .btn-page-primary:hover {
   color: #fff;
   background-color: var(--main-text-color);
