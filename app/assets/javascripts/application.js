@@ -21,6 +21,6 @@
 //= require tempusdominus-bootstrap-4
 
 //= require datetime_picker
-//= require_tree .
+//= require google_map_init
 
 
