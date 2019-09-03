@@ -1,23 +1,14 @@
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -33.8688, lng: 151.2195},
+    center: {lat: 32.715736, lng: -117.161087},
     zoom: 13
   });
-  var card = document.getElementById('pac-card');
-  var input = document.getElementById('pac-input');
-  var types = document.getElementById('type-selector');
-  var strictBounds = document.getElementById('strict-bounds-selector');
-
-  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+  var input = document.getElementById('event_address');
 
   var autocomplete = new google.maps.places.Autocomplete(input);
 
-  // Bind the map's bounds (viewport) property to the autocomplete object,
-  // so that the autocomplete requests use the current map bounds for the
-  // bounds option in the request.
   autocomplete.bindTo('bounds', map);
 
-  // Set the data fields to return when the user selects a place.
   autocomplete.setFields(
       ['address_components', 'geometry', 'icon', 'name']);
 
@@ -58,30 +49,10 @@ function initMap() {
         (place.address_components[2] && place.address_components[2].short_name || '')
       ].join(' ');
     }
-
-    infowindowContent.children['place-icon'].src = place.icon;
-    infowindowContent.children['place-name'].textContent = place.name;
+    
+    document.getElementById('event_latitude').value = place.geometry.location.lat();
+    document.getElementById('event_longitude').value = place.geometry.location.lng();
     infowindowContent.children['place-address'].textContent = address;
     infowindow.open(map, marker);
   });
-
-  // Sets a listener on a radio button to change the filter type on Places
-  // Autocomplete.
-  function setupClickListener(id, types) {
-    var radioButton = document.getElementById(id);
-    radioButton.addEventListener('click', function() {
-      autocomplete.setTypes(types);
-    });
-  }
-
-  setupClickListener('changetype-all', []);
-  setupClickListener('changetype-address', ['address']);
-  setupClickListener('changetype-establishment', ['establishment']);
-  setupClickListener('changetype-geocode', ['geocode']);
-
-  document.getElementById('use-strict-bounds')
-      .addEventListener('click', function() {
-        console.log('Checkbox clicked! New state=' + this.checked);
-        autocomplete.setOptions({strictBounds: this.checked});
-      });
 }
