@@ -1,0 +1,17 @@
+= simple_form_for @group, wrapper: :horizontal_form, wrapper_mappings: { file: :horizontal_file },
+                          wrapper_mappings: { boolean: :horizontal_boolean,
+                            check_boxes:   :horizontal_collection,
+                            date:          :horizontal_multi_select,
+                            datetime:      :horizontal_multi_select,
+                            file:          :horizontal_file,
+                            radio_buttons: :horizontal_collection,
+                            range:         :horizontal_range,
+                            time:          :horizontal_multi_select } do |f|
+  = f.error_notification
+  = f.input :name
+  = f.input :description
+  = f.input :cover, as: :file, input_html: { accept: Group::COVER_TYPE }
+  .form-group.row
+    .col-sm-9.offset-sm-3
+      = f.button :submit, class: "btn-page-primary"
+      a.btn.btn-outline-secondary.ml-4 href="#{@group.new_record? ? groups_path : (group_path @group)}" Cancel

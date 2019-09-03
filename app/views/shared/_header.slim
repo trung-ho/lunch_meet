@@ -27,3 +27,6 @@
           - else
             a.sign-in-btn.nav-link.text-white.px-4 href="#{new_user_registration_path}" Sign Up
             a.sign-in-btn.nav-link.text-white.px-4 href="#{new_user_session_path}" Sign In
+      #toasts-messages
+        - if flash && flash[:success]
+          = render 'shared/notifications', locals: { type: 'success', message: flash[:success] }

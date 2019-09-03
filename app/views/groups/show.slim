@@ -16,3 +16,6 @@
           i.far.fa-edit.mr-2
           span Edit group
   .dropdown-divider.py-4
+
+  #events-list
+    = render partial: "events/card", collection: @events, as: :event

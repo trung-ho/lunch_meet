@@ -9,7 +9,7 @@ class EventsController < ApplicationController
     if @group.present?
       @event = @group.events.new event_params
       if @event.save
-        redirect_to(@group, error: 'Event is created successful.')
+        redirect_to @group, flash: { success: 'Your Event has been created successfull'}
       else
         render :new
       end

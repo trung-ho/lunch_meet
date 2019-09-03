@@ -2,9 +2,11 @@
 @import "tempusdominus-bootstrap-4";
 @import "home";
 @import "header";
+@import "footer";
 @import "users/sign_up";
 @import "groups/_card";
 @import "groups/show";
+@import "events/_card";
 
 @import "responsive";
 
@@ -53,6 +55,10 @@ a.no-underline {
   color: #fff;
   background-color: var(--main-bg-color);
   border-color: var(--main-text-color);
+}
+
+.bg-page-primary {
+  background-color: var(--main-bg-color);
 }
 
 .btn-page-primary:hover {

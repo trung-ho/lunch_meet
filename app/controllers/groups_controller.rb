@@ -6,6 +6,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = find_group
+    @events = @group.events
   end
 
   def edit
@@ -16,16 +17,24 @@ class GroupsController < ApplicationController
     @group = find_group
 
     if @group.update_attributes group_params
-      redirect_to(@group, notice: 'Group was successfully updated')
+      redirect_to @group, flash: { success: 'Your Group has been updated successfull'}
     else
       render :edit
     end
   end
 
   def create
+    @group = current_user.groups.new group_params
+
+    if @group.save
+      redirect_to @group, flash: { success: 'Your Group has been created successfull'}
+    else
+      render :new
+    end
   end
 
   def new
+    @group = Group.new
   end
 
   private

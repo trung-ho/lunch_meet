@@ -1,0 +1,21 @@
+.row
+  .col-lg-6.offset-lg-3.mb-3
+    .card.text-center
+      - week_day, start_date, start_month, start_day = ''
+      - if event.start_at.present?
+        - week_day = event.start_at.strftime("%A")
+        - start_date = event.start_at.strftime("%F")
+        - start_day = event.start_at.strftime("%d")
+        - start_month = event.start_at.strftime("%B")
+      .card-body
+        time.icon datetime="#{start_date}" 
+          em= week_day
+          strong= start_month
+          span.text-secondary= start_day
+        h4.card-title= event.title
+        h6.card-text.text-secondary= event.start_at.present? ? event.start_at.strftime("at %l:%M %p") : 'no start time'
+      ul.list-group.list-group-flush
+        -if event.address.present?
+          li.list-group-item= event.description
+      .card-body
+        a.btn.btn-page-primary.px-5.py-3.w-100 href="#" Vote

@@ -1,0 +1,9 @@
+- if locals[:type] == 'success'
+  .toast.toast-item.mt-2.text-white aria-atomic="true" aria-live="assertive" role="alert" data-delay="3000"
+    .toast-header
+      strong.mr-auto Notification
+      small.text-muted just now
+      button.ml-2.mb-1.close aria-label="Close" data-dismiss="toast" type="button" 
+        span aria-hidden="true" &times;
+    .toast-body.text-body
+      = flash[:success]
