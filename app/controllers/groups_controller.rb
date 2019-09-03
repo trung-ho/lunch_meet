@@ -6,6 +6,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = find_group
+    @events = @group.events
   end
 
   def edit
