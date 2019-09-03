@@ -20,7 +20,7 @@ class User < ApplicationRecord
   end
 
   def is_admin_of group
-    self.id = group.id
+    self.id == group.id
   end
 
   def is_member_of group
