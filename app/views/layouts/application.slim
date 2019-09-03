@@ -12,7 +12,7 @@ html
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBv7kENn1rMPiBe1zpyTuicWL_g3I1hzRk&libraries=places&callback=initMap" 
+    script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY']}&libraries=places&callback=initMap" 
   body
     #header.container-fluid
       = render 'shared/header'
