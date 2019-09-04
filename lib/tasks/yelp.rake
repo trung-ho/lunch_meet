@@ -23,7 +23,7 @@ namespace :yelp do
       puts "Begin finding restaurant for category: #{category.name}"
       params = {
         categories: category.alias,
-        location: 'SD',
+        location: 'San Diego',
         limit: 50
       }
       total_restaurant = 0
