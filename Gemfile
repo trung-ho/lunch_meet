@@ -50,6 +50,7 @@ gem 'simple_form'
 gem 'bootstrap4-datetime-picker-rails'
 gem 'activeadmin'
 gem 'aasm'
+gem 'dry-transaction'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
