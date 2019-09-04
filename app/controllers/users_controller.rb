@@ -11,6 +11,9 @@ class UsersController < ApplicationController
   def dashboard
   end
 
+  def select_preferences
+  end
+
   private
 
   def user_id
