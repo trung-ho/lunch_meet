@@ -22,7 +22,7 @@
                     = current_user.full_name
                   .dropdown-menu aria-labelledby="right-menu-links" 
                     a.dropdown-item href="#{user_path current_user}" My Profile
-                    a.dropdown-item href="#{user_path current_user}" Change my preferences
+                    a.dropdown-item href="#{select_preferences_users_path}" Change my preferences
                     =link_to 'Sign out', '/users/sign_out', method: :delete, class: 'dropdown-item'
           - else
             a.sign-in-btn.nav-link.text-white.px-4 href="#{new_user_registration_path}" Sign Up

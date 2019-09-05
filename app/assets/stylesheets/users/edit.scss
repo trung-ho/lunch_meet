@@ -12,4 +12,15 @@
   .collection_check_boxes {
     font-size: 18px;
   }
+
+  .custom-control-label::before {
+    border-radius: 0.25rem;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: var(--main-bg-color);
+    background-color: var(--main-bg-color);
+  }
 }
