@@ -46,7 +46,7 @@ gem 'ransack'
 gem "pundit"
 gem "paperclip", "~> 6.0.0"
 gem 'aws-sdk-s3'
-gem 'simple_form'
+gem 'simple_form', github: 'plataformatec/simple_form'
 gem 'bootstrap4-datetime-picker-rails'
 gem 'activeadmin'
 gem 'aasm'
