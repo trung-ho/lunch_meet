@@ -16,6 +16,9 @@ class User < ApplicationRecord
 
   has_many :user_categories
   has_many :preferences, through: :user_categories, class_name: 'Category', source: :category
+  accepts_nested_attributes_for :user_categories
+
+  attr_accessor :preference_ids
 
   def full_name
     return '' if first_name.nil? && last_name.nil?

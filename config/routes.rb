@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     collection do
       get :dashboard
       get :select_preferences
+      patch :set_preferences
     end
   end
   resources :restaurants

@@ -12,11 +12,18 @@ class UsersController < ApplicationController
   end
 
   def select_preferences
+    @user = current_user
+  end
+
+  def set_preferences
   end
 
   private
 
   def user_id
     params['id']
+  end
+
+  def preferences_params
   end
 end
