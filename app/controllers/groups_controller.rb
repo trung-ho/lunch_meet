@@ -17,7 +17,7 @@ class GroupsController < ApplicationController
     @group = find_group
 
     if @group.update_attributes group_params
-      redirect_to @group, flash: { success: 'Your Group has been updated successfull'}
+      redirect_to @group, flash: { success: 'Your Group has been updated successfully'}
     else
       render :edit
     end
@@ -27,7 +27,7 @@ class GroupsController < ApplicationController
     @group = current_user.groups.new group_params
 
     if @group.save
-      redirect_to @group, flash: { success: 'Your Group has been created successfull'}
+      redirect_to @group, flash: { success: 'Your Group has been created successfully'}
     else
       render :new
     end

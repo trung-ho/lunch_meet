@@ -1,0 +1,12 @@
+#user-edit-page
+  .container
+    .h3.text-muted.text-center.mb-3 What kind of restaurant do you like?
+    .text-center.mb-3
+      small.text-muted Select 3 preferences
+    .text-center
+      = simple_form_for @user, url: set_preferences_users_path, wrapper_mappings: { check_boxes: :custom_collection } do |f|
+        = f.input :preference_ids, as: :check_boxes, collection: Category.all.pluck(:name, :id), wrapper: :custom_collection_inline
+        .form-group.row
+            .col-sm-6.offset-sm-3
+              = f.button :submit, "Save Change", class: "btn-page-primary"
+              a.btn.btn-outline-secondary.ml-4 href="#{user_path current_user}" Cancel

@@ -14,6 +14,12 @@ class User < ApplicationRecord
   has_many :joined_in_groups, foreign_key: "user_id", class_name: "GroupMember"
   has_many :member_of_groups, through: :joined_in_groups, class_name: 'Group', source: :group
 
+  has_many :user_categories
+  has_many :preferences, through: :user_categories, class_name: 'Category', source: :category
+  accepts_nested_attributes_for :user_categories
+
+  attr_accessor :preference_ids
+
   def full_name
     return '' if first_name.nil? && last_name.nil?
     first_name + ' ' + last_name
