@@ -25,7 +25,6 @@ class GroupsController < ApplicationController
 
   def create
     @group = current_user.groups.new group_params
-
     if @group.save
       redirect_to @group, flash: { success: 'Your Group has been created successfully'}
     else
