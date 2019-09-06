@@ -1,7 +1,18 @@
 class MembersController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @group = Group.find group_id
     @members = @group.members
+  end
+
+  def add
+    @group = Group.find group_id
+    @q = User.ransack(params[:q])
+    @user = @q.result(distinct: true).order(created_at: :desc)
+  end
+
+  def create
   end
 
   def destroy

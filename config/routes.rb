@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   resources :restaurants
   resources :groups do
     resources :events
-    resources :members
+    resources :members do
+      collection do
+        get :add
+      end
+    end
   end
 end

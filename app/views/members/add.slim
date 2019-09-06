@@ -11,15 +11,9 @@
           i.fas.fa-user-plus.mr-2
           span Add Members
   .dropdown-divider.py-3
-  .row#members-list
-    .col-12
-      .h3.text-center.text-secondary
-        | Group Members List
-      - if @members.any?
-        = render partial: "card", collection: @members, as: :member
-      - else
-        .alert.alert-warning.alert-dismissible.fade.show role="alert" 
-          strong.mr-1 There is no member in this group
-          | You can begin to invite your friend to group.
-          button.close aria-label="Close" data-dismiss="alert" type="button" 
-            span aria-hidden="true"  &times;
+  = search_form_for @q do |f|
+    .form-group.row
+      .col-md-10.mb-3
+        = f.search_field :email_cont, class: 'form-control', placeholder: 'Find user by email'
+      .col-md-2.mb-3
+        = f.submit "Search", class: 'btn btn-page-primary w-100'

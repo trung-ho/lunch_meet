@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @q = current_user.groups.ransack(params[:q])
     @groups = @q.result(distinct: true).order(created_at: :desc)

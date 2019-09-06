@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
     @group = find_group
     @event = @group.events.new
