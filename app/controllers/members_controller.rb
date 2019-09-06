@@ -7,9 +7,9 @@ class MembersController < ApplicationController
   end
 
   def add
-    @group = Group.find group_id
+    @group = Group.includes(:members).find group_id
     @q = User.ransack(params[:q])
-    @user = @q.result(distinct: true).order(created_at: :desc)
+    @users = @q.result(distinct: true).order(created_at: :desc)
   end
 
   def create

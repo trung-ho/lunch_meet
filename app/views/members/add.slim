@@ -11,9 +11,13 @@
           i.fas.fa-user-plus.mr-2
           span Add Members
   .dropdown-divider.py-3
-  = search_form_for @q do |f|
+  = search_form_for @q, url: add_group_members_path(@group)  do |f|
     .form-group.row
       .col-md-10.mb-3
         = f.search_field :email_cont, class: 'form-control', placeholder: 'Find user by email'
       .col-md-2.mb-3
         = f.submit "Search", class: 'btn btn-page-primary w-100'
+    .row#members-list
+      .col-12
+        - if @users.any?
+          = render partial: "add_card", collection: @users, as: :user

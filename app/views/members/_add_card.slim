@@ -1,0 +1,13 @@
+.media.member-card.d-flex.align-items-center
+  =image_tag user.avatar.url(:medium), class: 'rounded-circle mr-3'
+  .media-body
+    h5.mb-0.mt-0=user.full_name
+  .members-actions-btn
+    - if user.is_member_of @group
+      .btn.btn-info
+        i.far.fa-check-circle
+    - else
+      button.btn.btn-outline-info type="button" data-toggle="modal"
+        i.fas.fa-plus-circle.mr-2
+        | Invite
+.dropdown-divider.py-2
