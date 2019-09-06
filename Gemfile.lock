@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: 5c6f38f4aa69721a2ff79726e6f8e9c87104e019
+  branch: master
+  specs:
+    faker (2.2.1)
+      i18n (~> 1.6.0)
+
+GIT
   remote: https://github.com/plataformatec/simple_form.git
   revision: fc25ab40a28ad477e1ac0e45ddcf7ad2b64891f3
   specs:
@@ -380,6 +388,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   dry-transaction
+  faker!
   geocoder
   http
   jbuilder (~> 2.5)

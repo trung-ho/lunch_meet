@@ -11,10 +11,14 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if current_user.preferences.empty? || current_user.preferences.size < 4
-      select_preferences_users_path
+    if resource.is_a?(AdminUser)
+      stored_location_for(resource)
     else
-      stored_location_for(resource) || groups_path
+      if current_user.preferences.empty? || current_user.preferences.size < 4
+        select_preferences_users_path
+      else
+        stored_location_for(resource) || groups_path
+      end
     end
   end
 
