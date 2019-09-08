@@ -9,10 +9,23 @@ class MembersController < ApplicationController
   def add
     @group = Group.includes(:members).find group_id
     @q = User.page(params[:page]).ransack(params[:q])
-    @users = @q.result(distinct: true).order(created_at: :desc)
+
+    if params[:q].present?
+      @users = @q.result(distinct: true).order(created_at: :desc)
+    else
+      @users = []
+    end
+    @group_member = @group.group_members.new
   end
 
   def create
+    @group_member = GroupMember.new group_member_params
+    if @group_member.save
+      # flash[:success] = 'Member added succesfully.'
+      redirect_to @group_member.group, flash: { success: 'Member added succesfully.'}
+    else
+      render :add
+    end
   end
 
   def destroy
@@ -39,5 +52,9 @@ class MembersController < ApplicationController
 
   def member_id
     params[:id]
+  end
+
+  def group_member_params
+    params.require(:group_member).permit(:group_id, :user_id)
   end
 end

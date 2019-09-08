@@ -11,6 +11,9 @@
           i.fas.fa-user-plus.mr-2
           span Add Members
   .dropdown-divider.py-3
+  = simple_form_for @group_member do |f|
+    = f.hidden_field :group_id
+    = f.hidden_field :user_id
   = search_form_for @q, url: add_group_members_path(@group)  do |f|
     .form-group.row
       .col-md-10.mb-3
