@@ -5,3 +5,13 @@
     }
   }
 }
+
+.page-item.active .page-link {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}  
+
+.page-link {
+  color: #17a2b8;
+}
