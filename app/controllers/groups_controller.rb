@@ -2,7 +2,8 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @q = current_user.groups.ransack(params[:q])
+    @groups = Group.joins('LEFT OUTER JOIN "group_members" ON "group_members"."group_id" = "groups"."id"').where("groups.user_id = ? or group_members.user_id = ?", current_user.id, current_user.id)
+    @q = @groups.ransack(params[:q])
     @groups = @q.result(distinct: true).order(created_at: :desc)
   end
 
