@@ -21,3 +21,4 @@
       .col-12
         - if @users.any?
           = render partial: "add_card", collection: @users, as: :user
+          = paginate @users

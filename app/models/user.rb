@@ -18,6 +18,8 @@ class User < ApplicationRecord
   has_many :preferences, through: :user_categories, class_name: 'Category', source: :category
   accepts_nested_attributes_for :user_categories
 
+  paginates_per 10
+
   attr_accessor :preference_ids
 
   def full_name
