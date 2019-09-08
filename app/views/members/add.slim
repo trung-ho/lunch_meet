@@ -1,0 +1,27 @@
+.container#group-show
+  .row.groups-btn-actions
+    .col-md-7.mb-3
+      .group-name-and-logo.mr-auto
+        a href="#{group_path @group}"
+          =image_tag @group.cover.url(:thumb), class: 'mr-3 rounded'
+          span.group-name= @group.name
+    .col-md-5.d-flex.align-items-left.justify-content-end.groups-actions.mb-3
+      -if current_user.is_admin_of @group
+        a.no-underline.text-page-primary href="#{add_group_members_path @group}"
+          i.fas.fa-user-plus.mr-2
+          span Add Members
+  .dropdown-divider.py-3
+  = simple_form_for @group_member do |f|
+    = f.hidden_field :group_id
+    = f.hidden_field :user_id
+  = search_form_for @q, url: add_group_members_path(@group)  do |f|
+    .form-group.row
+      .col-md-10.mb-3
+        = f.search_field :email_cont, class: 'form-control', placeholder: 'Find user by email'
+      .col-md-2.mb-3
+        = f.submit "Search", class: 'btn btn-page-primary w-100'
+    .row#members-list
+      .col-12
+        - if @users.any?
+          = render partial: "add_card", collection: @users, as: :user
+          = paginate @users

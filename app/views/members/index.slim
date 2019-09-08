@@ -1,0 +1,25 @@
+.container#group-show
+  .row.groups-btn-actions
+    .col-md-7.mb-3
+      .group-name-and-logo.mr-auto
+        a href="#{group_path @group}"
+          =image_tag @group.cover.url(:thumb), class: 'mr-3 rounded'
+          span.group-name= @group.name
+    .col-md-5.d-flex.align-items-left.justify-content-end.groups-actions.mb-3
+      -if current_user.is_admin_of @group
+        a.no-underline.text-page-primary href="#{add_group_members_path @group}"
+          i.fas.fa-user-plus.mr-2
+          span Add Members
+  .dropdown-divider.py-3
+  .row#members-list
+    .col-12
+      .h3.text-center.text-secondary
+        | Group Members List
+      - if @members.any?
+        = render partial: "card", collection: @members, as: :member
+      - else
+        .alert.alert-warning.alert-dismissible.fade.show role="alert" 
+          strong.mr-1 There is no member in this group
+          | You can begin to invite your friend to group.
+          button.close aria-label="Close" data-dismiss="alert" type="button" 
+            span aria-hidden="true"  &times;

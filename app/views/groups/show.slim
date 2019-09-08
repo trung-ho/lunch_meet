@@ -9,13 +9,13 @@
         a.no-underline.text-page-primary href="#{new_group_event_path @group}"
           i.far.fa-calendar-plus.mr-2
           span Add Event
-        a.no-underline.text-page-primary href="#{edit_group_path @group}"
-          i.fas.fa-user-plus.mr-2
-          span Add Members
+        a.no-underline.text-page-primary href="#{group_members_path @group}"
+          i.fas.fa-users.mr-2
+          span Members
         a.no-underline.text-page-primary href="#{edit_group_path @group}"
           i.far.fa-edit.mr-2
           span Edit group
-  .dropdown-divider.py-4
+  .dropdown-divider.py-3
 
   #events-list
     = render partial: "events/card", collection: @events, as: :event
