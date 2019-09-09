@@ -1,0 +1,11 @@
+.container
+  .row
+    .col
+      .alert.alert-info role="alert" 
+        | List of Restaurant near by 
+        b 
+          i #{@event.address}
+  .row
+    - @event_restaurants.sort_by(&:match_size).reverse.each do |e_r|
+      .col-md-6
+        = render partial: "/restaurants/card", locals: {restaurant: e_r.restaurant, event_restaurant: e_r, members: @members}

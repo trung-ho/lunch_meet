@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :events do
       member do
         get :find_restaurants
+        get :review
       end
     end
     resources :members do

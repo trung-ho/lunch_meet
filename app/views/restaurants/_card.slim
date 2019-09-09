@@ -1,11 +1,32 @@
-.col-sm-4
-  img.card-img-top alt=("Card image cap") src="#{restaurant.image}"
-  .card-body
-    h5.card-title= restaurant.name
-    p.card-text="Categories: " + restaurant.categories.pluck(:name).join(", ")
-  ul.list-group.list-group-flush
-    li.list-group-item="Address: " + restaurant.display_address.join(", ")
-    li.list-group-item="Phone number: " + restaurant.display_phone
-  .card-body
-    a.card-link href="#{restaurant.url}" View in Yelp
+- relevant_percentage = ((event_restaurant.match.size.to_f / members.size.to_f) * 100).round(1).to_s
+.restaurant-card.mb-5
+  .row.mb-2
+    .media-body.col-md-7
+      h5.mt-0.mb-1= restaurant.name
+      p
+        i.fas.fa-utensils.mr-2
+        = restaurant.categories.pluck(:name).join(", ")
+      p
+        i.fas.fa-store.mr-2
+        = restaurant.address1
+      p
+        i.fas.fa-map-marked-alt.mr-2
+        = event_restaurant.distance.round(2).to_s + ' miles away'
+      .matching-relevant
+        .progress data-value="#{relevant_percentage}" 
+          span.progress-left
+            span.progress-bar.border-page-primary
+          span.progress-right
+            span.progress-bar.border-page-primary
+          .progress-value.w-100.h-100.rounded-circle.d-flex.align-items-center.justify-content-center
+            .h6.mb-0
+              = relevant_percentage
+              sup.small %
+        .text match
+    .col-md-5
+      img.w-100.rounded alt="..." src="#{yelp_img_ls restaurant.image}"
+  .row
+    .col-12
+      a.btn.btn-outline-secondary.w-100 href="#{restaurant.url}" target="_blank" View On Yelp
+
 

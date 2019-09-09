@@ -21,15 +21,25 @@ class EventsController < ApplicationController
   end
 
   def find_restaurants
-    group = current_user.groups.find_by(id: group_id)
-    return redirect_to root_path, flash: { error: 'Your don"t have permission'} if group.nil?
+    @group = current_user.groups.find_by(id: group_id)
+    return redirect_to root_path, flash: { error: 'Your don"t have permission'} if @group.nil?
 
-    event = group.events.find_by(id: event_id)
-    if event.present?
-      FindBestRestaurants.new.call(event: event)
+    @event = @group.events.find_by(id: event_id)
+    if @event.present?
+      FindBestRestaurants.new.call(event: @event)
+      redirect_to review_group_event_path(@group, @event)
     else
       redirect_to root_path, flash: { error: 'Your don"t have permission'}
     end
+  end
+
+  def review
+    @group = current_user.groups.find_by(id: group_id)
+    return redirect_to root_path, flash: { error: 'Your don"t have permission'} if @group.nil?
+    @event = @group.events.find_by(id: event_id)
+    return redirect_to root_path, flash: { error: 'Your don"t have permission'} if @event.nil?
+    @members = @group.all_members
+    @event_restaurants = @event.event_restaurants.includes(restaurant: [:categories])
   end
 
   def show
