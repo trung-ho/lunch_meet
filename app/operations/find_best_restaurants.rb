@@ -53,6 +53,9 @@ class FindBestRestaurants
                                                               match: top_10_relevant[top_restaurant.id]
       event_restaurant.save
     end
+    if event.in_active?
+      event.reviewing!
+    end
     Success(event: event)
   end
 end
