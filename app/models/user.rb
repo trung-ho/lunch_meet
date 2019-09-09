@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :user_categories
   has_many :preferences, through: :user_categories, class_name: 'Category', source: :category
   accepts_nested_attributes_for :user_categories
+  has_many :votings
 
   paginates_per 10
 
@@ -33,5 +34,9 @@ class User < ApplicationRecord
 
   def is_member_of group
     group.members.pluck(:id).include? self.id
+  end
+
+  def voted_for event, restaurant
+    self.votings.where(event: event, restaurant: restaurant).any?
   end
 end

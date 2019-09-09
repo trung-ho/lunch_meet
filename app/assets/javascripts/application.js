@@ -25,5 +25,6 @@
 //= require notification
 //= require members/add
 //= require events/new
+//= require votings/new
 
 

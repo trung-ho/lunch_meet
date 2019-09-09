@@ -12,4 +12,12 @@ class Group < ActiveRecord::Base
                               default_url: "groups/missing.svg"
   validates_attachment_content_type :cover, content_type: /\Aimage\/.*\z/
   validates_presence_of :name
+
+  def all_members
+    (self.members.to_a << self.admin).uniq
+  end
+
+  def all_members_id
+    (self.members.pluck(:id) << self.user_id).uniq
+  end
 end

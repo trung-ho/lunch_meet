@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_04_204353) do
+ActiveRecord::Schema.define(version: 2019_09_09_223425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,10 +51,10 @@ ActiveRecord::Schema.define(version: 2019_09_04_204353) do
   create_table "event_restaurants", force: :cascade do |t|
     t.bigint "event_id", null: false
     t.bigint "restaurant_id", null: false
-    t.float "distant"
-    t.float "match"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "match", default: [], array: true
+    t.float "distance"
     t.index ["event_id"], name: "index_event_restaurants_on_event_id"
     t.index ["restaurant_id"], name: "index_event_restaurants_on_restaurant_id"
   end
@@ -164,6 +164,17 @@ ActiveRecord::Schema.define(version: 2019_09_04_204353) do
     t.string "address"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "votings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.bigint "restaurant_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_votings_on_event_id"
+    t.index ["restaurant_id"], name: "index_votings_on_restaurant_id"
+    t.index ["user_id"], name: "index_votings_on_user_id"
   end
 
 end

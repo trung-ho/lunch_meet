@@ -10,6 +10,8 @@
 @import "users/sign_up";
 @import "users/edit";
 @import "members/_card";
+@import "restaurants/_card";
+@import "votings/new";
 
 @import "responsive";
 
@@ -62,6 +64,10 @@ a.no-underline {
 
 .bg-page-primary {
   background-color: var(--main-bg-color);
+}
+
+.border-page-primary {
+  border-color: var(--main-bg-color);
 }
 
 .btn-page-primary:hover {
