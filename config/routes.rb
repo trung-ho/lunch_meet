@@ -20,6 +20,7 @@ Rails.application.routes.draw do
         get :find_restaurants
         get :review
       end
+      resources :votings
     end
     resources :members do
       collection do
@@ -28,5 +29,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :votings
+  # resources :votings
 end

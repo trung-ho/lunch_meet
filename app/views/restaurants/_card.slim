@@ -30,9 +30,10 @@
         a.text-primary.font-weight-bold href="#{restaurant.url}" target="_blank" 
           | View at
           i.fab.fa-yelp.ml-1
-  .row
-    / .col-12
-    /   a.btn.btn-outline-secondary.w-100 href="#{restaurant.url}" target="_blank" View On Yelp
+  - if @event.present? && @event.active?
+    .row
+      .col-12
+        a.btn.btn-outline-info.w-100 href="#{restaurant.url}" target="_blank" Vote For This Restaurant
   hr
 
 
