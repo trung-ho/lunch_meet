@@ -20,6 +20,18 @@ class EventsController < ApplicationController
     end
   end
 
+  def find_restaurants
+    group = current_user.groups.find_by(id: group_id)
+    return redirect_to root_path, flash: { error: 'Your don"t have permission'} if group.nil?
+
+    event = group.events.find_by(id: event_id)
+    if event.present?
+      FindBestRestaurants.new.call(event: event)
+    else
+      redirect_to root_path, flash: { error: 'Your don"t have permission'}
+    end
+  end
+
   def show
     @event = get_event
   end

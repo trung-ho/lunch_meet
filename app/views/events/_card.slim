@@ -1,5 +1,11 @@
 .row
   .col-lg-6.offset-lg-3.mb-3
+    - if current_user.is_admin_of(@group) && event.in_active?
+      .card-header.text-right
+        a.btn.btn-page-primary href="#{find_restaurants_group_event_path(@group, event)}" 
+          small
+            i.fas.fa-search-location.mr-1
+            | Find Restaurant
     .card.text-center
       - week_day, start_date, start_month, start_day = ''
       - if event.start_at.present?
