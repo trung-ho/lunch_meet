@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
   include AASM
   belongs_to :group
+  has_many :event_restaurants
+  has_many :restaurants, through: :event_restaurants
   validates_presence_of :title, :description, :start_at, :vote_duration
 
   geocoded_by :address
