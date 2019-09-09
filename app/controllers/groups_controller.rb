@@ -2,14 +2,16 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @groups = Group.joins('LEFT OUTER JOIN "group_members" ON "group_members"."group_id" = "groups"."id"').where("groups.user_id = ? or group_members.user_id = ?", current_user.id, current_user.id)
+    @groups = Group.joins('LEFT OUTER JOIN "group_members" ON "group_members"."group_id" = "groups"."id"'
+                          ).where("groups.user_id = ? or group_members.user_id = ?", current_user.id, current_user.id)
     @q = @groups.ransack(params[:q])
     @groups = @q.result(distinct: true).order(created_at: :desc)
   end
 
   def show
     @group = find_group
-    @events = @group.events
+    @events = Event.joins('LEFT OUTER JOIN "groups" ON "groups"."id" = "events"."group_id"'
+                          ).where("groups.id = ? AND (groups.user_id = ? OR events.state IN (?))", @group.id, current_user.id, ['active', 'finished'])
   end
 
   def edit
