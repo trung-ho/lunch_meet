@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :user_categories
   has_many :preferences, through: :user_categories, class_name: 'Category', source: :category
   accepts_nested_attributes_for :user_categories
+  has_many :votings
 
   paginates_per 10
 

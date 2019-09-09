@@ -4,7 +4,8 @@ class Event < ActiveRecord::Base
   has_many :event_restaurants
   has_many :restaurants, through: :event_restaurants
   validates_presence_of :title, :description, :start_at, :vote_duration
-
+  has_many :votings
+  
   geocoded_by :address
   reverse_geocoded_by :latitude, :longitude
   after_validation :reverse_geocode
