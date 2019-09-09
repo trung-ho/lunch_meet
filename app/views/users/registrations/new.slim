@@ -14,6 +14,13 @@
               = f.email_field :email, class: 'form-control', autofocus: true, autocomplete: "email"
             .form-row
               .form-group.col-md-6
+                = f.label :first_name
+                = f.text_field :first_name, class: 'form-control'
+              .form-group.col-md-6
+                = f.label :last_name
+                = f.text_field :last_name, class: 'form-control'
+            .form-row
+              .form-group.col-md-6
                 = f.label :password
                 = f.password_field :password, class: 'form-control', autocomplete: "new-password"
               .form-group.col-md-6

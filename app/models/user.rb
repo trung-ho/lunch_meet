@@ -23,6 +23,8 @@ class User < ApplicationRecord
 
   attr_accessor :preference_ids
 
+  validates_presence_of :first_name, :last_name
+
   def full_name
     return '' if first_name.nil? && last_name.nil?
     first_name + ' ' + last_name
