@@ -31,9 +31,14 @@
           | View at
           i.fab.fa-yelp.ml-1
   - if @event.present? && @event.active?
-    .row
+    .row.voting-actions
       .col-12
-        a.btn.btn-outline-info.w-100 href="#{restaurant.url}" target="_blank" Vote For This Restaurant
+        - unless current_user.voted_for @event, restaurant
+          button.btn.btn-outline-info.w-100.vote-for-restaurant data-restaurant-id="#{restaurant.id}" Vote For This Restaurant
+        - else
+          .alert.alert-success.voted_successful.mb-0
+            i.far.fa-check-circle.mr-2
+            | You voted for this restaurant
   hr
 
 

@@ -35,4 +35,8 @@ class User < ApplicationRecord
   def is_member_of group
     group.members.pluck(:id).include? self.id
   end
+
+  def voted_for event, restaurant
+    self.votings.where(event: event, restaurant: restaurant).any?
+  end
 end
