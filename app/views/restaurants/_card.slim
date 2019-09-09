@@ -23,10 +23,15 @@
               = relevant_percentage
               sup.small %
         .text match
+      
     .col-md-5
       img.w-100.rounded alt="..." src="#{yelp_img_ls restaurant.image}"
+      p.mt-2
+        a.text-primary.font-weight-bold href="#{restaurant.url}" target="_blank" 
+          | View at
+          i.fab.fa-yelp.ml-1
   .row
-    .col-12
-      a.btn.btn-outline-secondary.w-100 href="#{restaurant.url}" target="_blank" View On Yelp
+    / .col-12
+    /   a.btn.btn-outline-secondary.w-100 href="#{restaurant.url}" target="_blank" View On Yelp
 
 
