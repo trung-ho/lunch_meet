@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_04_204353) do
+ActiveRecord::Schema.define(version: 2019_09_09_034535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,10 +51,10 @@ ActiveRecord::Schema.define(version: 2019_09_04_204353) do
   create_table "event_restaurants", force: :cascade do |t|
     t.bigint "event_id", null: false
     t.bigint "restaurant_id", null: false
-    t.float "distant"
-    t.float "match"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "match", default: [], array: true
+    t.float "distance"
     t.index ["event_id"], name: "index_event_restaurants_on_event_id"
     t.index ["restaurant_id"], name: "index_event_restaurants_on_restaurant_id"
   end
