@@ -2,13 +2,13 @@
   .col-lg-6.offset-lg-3.mb-3
     - if current_user.is_admin_of(@group) 
       - if event.in_active?
-        .card-header.text-right
+        .card-header.text-center
           a.btn.btn-page-primary href="#{find_restaurants_group_event_path(@group, event)}" 
             small
               i.fas.fa-search-location.mr-1
               | Find Restaurant
       - elsif event.review?
-        .card-header.text-right
+        .card-header.text-center
           a.btn.btn-page-primary href="#{review_group_event_path(@group, event)}" 
             small
               i.fas.fa-list-o.mr-1
