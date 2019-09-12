@@ -30,6 +30,21 @@
       ul.list-group.list-group-flush
         -if event.address.present?
           li.list-group-item= event.description
+      ul.list-group.list-group-flush
+        - if event.has_finished? && event.votings.any?
+          - voting_hash = event.votings.pluck(:restaurant_id).group_by{|i| i}
+          - highest_vote_time = voting_hash.max{|x,y| x[1].length <=> y[1].length}[1].size
+          - voting_hash.reject! {|k, v| v.size < highest_vote_time } 
+          - event.restaurants.where(id: voting_hash.keys).each_with_index do |restaurant, index| 
+            p= "Winner: " + restaurant.name + " (#{highest_vote_time} votes)"
+        - elsif event.votings.any?
+          - voting_hash = event.votings.pluck(:restaurant_id).group_by{|i| i}
+          - top_3_votes = voting_hash.sort_by {|_key, value| value.size}.reverse.first(3).to_h
+          - top_3_restaurants = event.restaurants.where(id: top_3_votes.keys)
+          - top_3_votes.each_with_index do |(restaurant_id, votes),index| 
+            p= "# #{index + 1}: " + top_3_restaurants.find(restaurant_id).name 
+            end
+
       .card-body
         - if event.in_active?
           .alert.alert-warning You have to find restaurants first!
