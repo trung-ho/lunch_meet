@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   belongs_to :group
   has_many :event_restaurants
   has_many :restaurants, through: :event_restaurants
-  validates_presence_of :title, :description, :start_at, :vote_duration
+  validates_presence_of :title, :description, :start_at
   has_many :votings
   
   geocoded_by :address
@@ -27,5 +27,9 @@ class Event < ActiveRecord::Base
     event :close do
       transitions from: :active, to: :finished
     end
+  end
+
+  def has_finished?
+    self.start_at && self.start_at < Time.now
   end
 end
