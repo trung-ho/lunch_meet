@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
   def show
     @group = find_group
     @events = Event.joins('LEFT OUTER JOIN "groups" ON "groups"."id" = "events"."group_id"'
-                          ).where("groups.id = ? AND (groups.user_id = ? OR events.state IN (?))", @group.id, current_user.id, ['active', 'finished'])
+                          ).where("groups.id = ? AND (groups.user_id = ? OR events.state IN (?))", @group.id, current_user.id, ['active', 'finished']).order(start_at: :desc)
   end
 
   def edit

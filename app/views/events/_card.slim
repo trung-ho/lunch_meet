@@ -1,18 +1,5 @@
 .row
   .col-lg-6.offset-lg-3.mb-3
-    - if current_user.is_admin_of(@group) 
-      - if event.in_active?
-        .card-header.text-center
-          a.btn.btn-page-primary href="#{find_restaurants_group_event_path(@group, event)}" 
-            small
-              i.fas.fa-search-location.mr-1
-              | Find Restaurant
-      - elsif event.review?
-        .card-header.text-center.test
-          a.btn.btn-page-primary href="#{review_group_event_path(@group, event)}" 
-            small
-              i.fas.fa-list-o.mr-1
-              | Review
     .card.text-center
       - week_day, start_date, start_month, start_day = ''
       - if event.start_at.present?
@@ -29,7 +16,7 @@
         h6.card-text.text-secondary= event.start_at.present? ? event.start_at.strftime("at %l:%M %p") : 'no start time'
       ul.list-group.list-group-flush
         -if event.address.present?
-          li.list-group-item= event.description
+          li.list-group-item= 'Description: ' + event.description
       ul.list-group.list-group-flush
         - if event.has_finished? && event.votings.any?
           - voting_hash = event.votings.pluck(:restaurant_id).group_by{|i| i}
@@ -43,12 +30,20 @@
           - top_3_restaurants = event.restaurants.where(id: top_3_votes.keys)
           - top_3_votes.each_with_index do |(restaurant_id, votes),index| 
             p= "# #{index + 1}: " + top_3_restaurants.find(restaurant_id).name 
-            end
-
       .card-body
-        - if event.in_active?
+        - if event.has_finished?
+          .alert.alert-danger Event ended
+        - elsif event.in_active?
           .alert.alert-warning You have to find restaurants first!
+          a.btn.btn-page-primary href="#{find_restaurants_group_event_path(@group, event)}" 
+            small
+              i.fas.fa-search-location.mr-1
+              | Find Restaurant
         - elsif event.review?
           .alert.alert-warning You have to publish event for voting!
+          a.btn.btn-page-primary href="#{review_group_event_path(@group, event)}" 
+            small
+              i.fas.fa-list-o.mr-1
+              | Review and Publish
         - else
           a.btn.btn-page-primary.px-5.py-3.w-100 href="#{new_group_event_voting_path @group.id, event.id}" Vote
