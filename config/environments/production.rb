@@ -92,7 +92,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
+  config.action_mailer.default_url_options = { host: ENV['HOST'] }
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
@@ -102,5 +102,15 @@ Rails.application.configure do
       :s3_region => ENV['S3_REGION']
     },
     :bucket => ENV['S3_BUCKET_NAME']
+  }
+
+  ActionMailer::Base.smtp_settings = {
+    :user_name => ENV['SENDGRID_USERNAME'],
+    :password => ENV['SENDGRID_PASSWORD'],
+    :domain => ENV['HOST'],
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
   }
 end

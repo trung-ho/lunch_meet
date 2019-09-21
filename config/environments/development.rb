@@ -58,7 +58,7 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
+  config.action_mailer.default_url_options = { host: ENV['HOST'] }
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
@@ -68,5 +68,15 @@ Rails.application.configure do
       :s3_region => ENV['S3_REGION']
     },
     :bucket => ENV['S3_BUCKET_NAME']
+  }
+
+  ActionMailer::Base.smtp_settings = {
+    :user_name => ENV['SENDGRID_USERNAME'],
+    :password => ENV['SENDGRID_PASSWORD'],
+    :domain => ENV['HOST'],
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
   }
 end
