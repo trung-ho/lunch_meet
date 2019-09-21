@@ -14,10 +14,10 @@ class ApplicationController < ActionController::Base
     if resource.is_a?(AdminUser)
       stored_location_for(resource)
     else
-      if current_user.preferences.empty? || current_user.preferences.size < 4
+      if current_user.preferences.empty? || current_user.preferences.size < 3
         select_preferences_users_path
       else
-        stored_location_for(resource) || groups_path
+        groups_path
       end
     end
   end

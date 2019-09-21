@@ -25,7 +25,7 @@
             = f.input :state, as: :hidden, input_html: { value: "active" }
             = f.submit 'Publish Event', class: 'btn btn-outline-success'
   .row
-    - if @event_restaurants.empty?
+    - if @event_restaurants.any?
       - @event_restaurants.sort_by(&:match_size).reverse.each do |e_r|
         .col-md-6
           = render partial: "/restaurants/card", locals: {restaurant: e_r.restaurant, event_restaurant: e_r, members: @members}
