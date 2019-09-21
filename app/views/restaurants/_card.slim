@@ -1,7 +1,7 @@
 - relevant_percentage = ((event_restaurant.match.size.to_f / members.size.to_f) * 100).round(1).to_s
 .restaurant-card.mb-5
   .row.mb-2
-    .media-body.col-md-7
+    .media-body.col-7
       h5.mt-0.mb-1= restaurant.name
       p
         i.fas.fa-utensils.mr-2
@@ -24,7 +24,7 @@
               sup.small %
         .text match
       
-    .col-md-5
+    .col-5
       img.w-100.rounded alt="..." src="#{yelp_img_ls restaurant.image}" onerror="this.onerror=null; this.style.display = 'none'"
       p.mt-2
         a.text-primary.font-weight-bold href="#{restaurant.url}" target="_blank" 
