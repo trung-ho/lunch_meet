@@ -1,6 +1,7 @@
 #event-new-page
   .container
-    h2 Create New Event
+    h2.text-center Create New Event
+    h4 Event information
     = simple_form_for @event, wrapper: :horizontal_form, wrapper_mappings: { file: :horizontal_file },
                               wrapper_mappings: { boolean: :horizontal_boolean,
                                 check_boxes:   :horizontal_collection,
@@ -14,19 +15,21 @@
       = f.input :title, placeholder: 'Event Title'
       = f.input :description, placeholder: 'Briefly description of event'
       .form-group.row.string.optional.event_start_at
-        label.col-sm-3.col-form-label.string.optional for="event_start_at" Start At
+        label.col-sm-3.col-form-label.string.optional for="event_start_at" Event start time
         .col-sm-9#start_at_datetime_picker.input-group.date data-target-input="nearest" 
           input#event_start_at.form-control.string.optional.datetimepicker-input name="event[start_at]" type="text" data-target="#start_at_datetime_picker"
           .input-group-append data-target="#start_at_datetime_picker" data-toggle="datetimepicker" 
             .input-group-text
               i.fa.fa-calendar
-
+      hr
+      h4 Find restaurants for event
       / = f.input :vote_duration, collection: [0.5, 1, 2, 4, 8, 12, 24, 48], label: 'Duration (hours)'
-      = f.input :radius, as: :range, input_html: { step: 1 ,min: 0, max: 10}, label: 'Radius (from 1-10 miles)'
-      .form-group.row
-        .col-sm-9.offset-sm-3
-          output#radius-output.form-text.text-muted 5
-      = f.input :address
+      = f.input :radius, as: :range, input_html: { step: 1 ,min: 0, max: 10}, label: 'Only show me restaurants within a specific distance', hint: 'Drag to adjust radius from 1-10 miles.'
+      .form-group.row.radius-output
+        .col-sm-9.offset-sm-3.text-bold
+          output#radius-output.mr-1 5
+          span miles
+      = f.input :address, label: 'Location', placeholder: 'Search by city, zip code or place.'
       .form-group.row
         .col-sm-9.offset-sm-3
           #map
