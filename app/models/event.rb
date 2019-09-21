@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   belongs_to :group
   has_many :event_restaurants
   has_many :restaurants, through: :event_restaurants
-  validates_presence_of :title, :description, :start_at
+  validates_presence_of :title, :description, :start_at, :address
   has_many :votings
   
   geocoded_by :address

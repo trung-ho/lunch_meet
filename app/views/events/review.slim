@@ -14,13 +14,18 @@
         | List of Restaurant near by 
         b 
           i #{@event.address}
-      .alert.alert-info role="alert" 
-        | You must publish event before voting
-        hr
-        = simple_form_for @event, url: group_event_path(@group, @event) do |f|
-          = f.input :state, as: :hidden, input_html: { value: "active" }
-          = f.submit 'Publish Event', class: 'btn btn-outline-success'
+      - if @event_restaurants.empty?
+        .alert.alert-danger role="alert" 
+          | No Restaurant found.
+      - else
+        .alert.alert-info role="alert" 
+          | You must publish event before voting
+          hr
+          = simple_form_for @event, url: group_event_path(@group, @event) do |f|
+            = f.input :state, as: :hidden, input_html: { value: "active" }
+            = f.submit 'Publish Event', class: 'btn btn-outline-success'
   .row
-    - @event_restaurants.sort_by(&:match_size).reverse.each do |e_r|
-      .col-md-6
-        = render partial: "/restaurants/card", locals: {restaurant: e_r.restaurant, event_restaurant: e_r, members: @members}
+    - if @event_restaurants.empty?
+      - @event_restaurants.sort_by(&:match_size).reverse.each do |e_r|
+        .col-md-6
+          = render partial: "/restaurants/card", locals: {restaurant: e_r.restaurant, event_restaurant: e_r, members: @members}

@@ -11,7 +11,8 @@ class EventsController < ApplicationController
     if @group.present?
       @event = @group.events.new event_params
       if @event.save
-        redirect_to @group, flash: { success: 'Your Event has been created successfully'}
+        FindBestRestaurants.new.call(event: @event)
+        redirect_to review_group_event_path(@group, @event), flash: { success: 'Your Event has been created successfully'}
       else
         render :new
       end
