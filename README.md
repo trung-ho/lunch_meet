@@ -1,24 +1,33 @@
-# README
+# Lunch Meet WebApplication
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+  - User can create a Group and inivite friend to join thier group.
+  - They can make a vote for where they wanna go for dinning.
+  - Base on group members's preferences, System will give a list of resturant near by their group.
+  - Group members will vote for restarants.
+  - All restaurants are taken from Yelp API.
 
-Things you may want to cover:
+## Live API:
+You can found the live code at:
+```sh
+https://happy-lunch-meet.herokuapp.com/
+```
 
-* Ruby version 2.5.3
+Admin site:
+```sh
+https://happy-lunch-meet.herokuapp.com/admin
+```
 
-* System dependencies
+## Tech
+* Web server: Ruby on Rails
+* Database: Postgresql
+* Front-end: Slim, Javascript, Jquery, Bootstrap
+* Other: Yelp API, Amazon S3, Google geocoder
 
-* Configuration
 
-* Database creation
+## Installation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Unzip the code.
+- Open terminal and change to code base directory
+- Run `bundle install` to install all the dependencies. You may need update new `rails` or `ruby` versions
+- Then run `rails server` to start local server
+- Open web browser and visit `localhost:3000`
